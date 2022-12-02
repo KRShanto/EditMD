@@ -16,9 +16,10 @@
                 "save": true
             },
             "fs": {
-                "readDir": false,
-                "readFile": false,
-                "writeFile": false
+                "scope": ["**/*"],
+                "readDir": true,
+                "readFile": true,
+                "writeFile": true
             }
         },
         "bundle": {
