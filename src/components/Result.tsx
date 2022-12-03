@@ -13,12 +13,17 @@ export default function Result() {
 
     return (
         <>
-            <div className="result">
-                {selectedFile !== undefined ? (
-                    <ReactMarkdown>{selectedFile.content}</ReactMarkdown>
-                ) : (
-                    <ReactMarkdown>{"## Select a file to edit"}</ReactMarkdown>
-                )}
+            <div className="edit-result">
+                <div className="header">Preview</div>
+                <div className="result">
+                    {selectedFile !== undefined ? (
+                        <ReactMarkdown>{selectedFile.content}</ReactMarkdown>
+                    ) : (
+                        <ReactMarkdown>
+                            {"## Select a file to edit"}
+                        </ReactMarkdown>
+                    )}
+                </div>
             </div>
         </>
     );

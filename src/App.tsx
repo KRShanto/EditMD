@@ -20,6 +20,10 @@ TODOs to do:
 
 - Create a component `TextArea` that will be used for editing the text.
    It will also have the functionality to undo/redo changes.
+   It will show the line numbers
+   Tab will indent the text
+
+- Change the default behaviour of the <a> tag in the markdown preview. Because in desktop, it will not open the link in the browser.
    
 */
 
@@ -58,6 +62,18 @@ function App() {
             name: "file.txt",
             hasUnsavedChanges: false,
         },
+        {
+            path: "/demo/file2.txt",
+            content: "It is just for a demo",
+            name: "file2.txt",
+            hasUnsavedChanges: false,
+        },
+        {
+            path: "/demo/file3.txt",
+            content: "It is just for a demo",
+            name: "file3.txt",
+            hasUnsavedChanges: false,
+        },
     ]);
     const [currentFile, setCurrentFile] = useState<string | null>(null);
 
@@ -72,8 +88,10 @@ function App() {
                 >
                     <Navbar />
                     <FileHeader />
-                    <Editor />
-                    <Result />
+                    <div className="edit-section">
+                        <Editor />
+                        <Result />
+                    </div>
                 </CurrentFilePathContext.Provider>
             </FilesContext.Provider>
         </>

@@ -13,14 +13,21 @@ export default function FileHeader() {
                 {files && currentFile ? (
                     files.files.map((file, index) => {
                         return (
-                            <div className="header" key={index}>
+                            <div
+                                className={`
+                                    header 
+                                    ${
+                                        file.hasUnsavedChanges ? "changed" : ""
+                                    }  ${
+                                    currentFile.currentFile === file.path
+                                        ? "current"
+                                        : ""
+                                }`}
+                                key={index}
+                            >
                                 <button
+                                    className="file-name"
                                     title={file.path}
-                                    style={
-                                        file.hasUnsavedChanges
-                                            ? { color: "red" }
-                                            : {}
-                                    }
                                     onClick={() => {
                                         currentFile?.setCurrentFile(file.path);
                                     }}
@@ -28,6 +35,7 @@ export default function FileHeader() {
                                     {file.name}
                                 </button>
                                 <button
+                                    className="close"
                                     onClick={async () => {
                                         if (file.hasUnsavedChanges) {
                                             // show a dialog if the file has unsaved changes
