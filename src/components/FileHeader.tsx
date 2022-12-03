@@ -1,3 +1,4 @@
+import { confirm } from "@tauri-apps/api/dialog";
 import { FilesContext, CurrentFilePathContext } from "../App";
 import { useContext } from "react";
 import { removeFile } from "../utils/removeFile";
@@ -27,10 +28,32 @@ export default function FileHeader() {
                                     {file.name}
                                 </button>
                                 <button
-                                    onClick={() =>
-                                        // TODO: show a dialog if the file has unsaved changes
-                                        removeFile(file, files, currentFile)
-                                    }
+                                    onClick={async () => {
+                                        if (file.hasUnsavedChanges) {
+                                            // show a dialog if the file has unsaved changes
+                                            let confirmed = await confirm(
+                                                "You will lose your unsaved changes if you continue.",
+                                                {
+                                                    type: "warning",
+                                                    title: "You have unsaved changes. Are you sure you want to close this file?",
+                                                }
+                                            );
+
+                                            if (confirmed) {
+                                                removeFile(
+                                                    file,
+                                                    files,
+                                                    currentFile
+                                                );
+                                            }
+                                        } else {
+                                            removeFile(
+                                                file,
+                                                files,
+                                                currentFile
+                                            );
+                                        }
+                                    }}
                                 >
                                     X
                                 </button>
