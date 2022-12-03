@@ -7,15 +7,15 @@ export default function Result() {
     const currentFile = useContext(CurrentFilePathContext);
 
     // Get the current file
-    const selected = files?.files.find(
+    const selectedFile = files?.files.find(
         (file) => file.path === currentFile?.currentFile
     );
 
     return (
         <>
             <div className="result">
-                {selected !== undefined ? (
-                    <ReactMarkdown>{selected.content}</ReactMarkdown>
+                {selectedFile !== undefined ? (
+                    <ReactMarkdown>{selectedFile.content}</ReactMarkdown>
                 ) : (
                     <ReactMarkdown>{"## Select a file to edit"}</ReactMarkdown>
                 )}
