@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { open } from "@tauri-apps/api/dialog";
-import { readTextFile } from "@tauri-apps/api/fs";
+import { readTextFile, writeTextFile } from "@tauri-apps/api/fs";
 import {
     FilesContext,
     FilesContextType,
@@ -56,6 +56,7 @@ async function openFile(
                         path: path,
                         content: content,
                         name: name ? name : "",
+                        hasUnsavedChanges: false,
                     });
                 } catch (error) {
                     // TODO: handle it
@@ -79,6 +80,47 @@ async function openFile(
     }
 }
 
+async function save(
+    files: FilesContextType,
+    currentFile: CurrentFilePathContextType
+) {
+    // Get the current file
+    const file = files.files.find(
+        (file) => file.path === currentFile.currentFile
+    );
+    if (file === undefined) {
+        // No file is open
+        console.log("No file is open");
+    } else {
+        // Save the file
+        try {
+            await writeTextFile(file.path, file.content);
+            console.log("File saved");
+
+            // Update the file in the list
+            const newFiles = files.files.map((file) => {
+                if (file.path === currentFile.currentFile) {
+                    return {
+                        ...file,
+                        hasUnsavedChanges: false,
+                    };
+                } else {
+                    return file;
+                }
+            });
+            // Update the list
+            files.setFiles(newFiles);
+        } catch (error) {
+            console.error(
+                "Error while saving the file {",
+                file.path,
+                "}, Error: ",
+                error
+            );
+        }
+    }
+}
+
 export default function Navbar() {
     const files = useContext(FilesContext);
     const currentFile = useContext(CurrentFilePathContext);
@@ -93,7 +135,9 @@ export default function Navbar() {
                         <button onClick={() => openFile(files, currentFile)}>
                             Open File
                         </button>
-                        <button>Save</button>
+                        <button onClick={() => save(files, currentFile)}>
+                            Save
+                        </button>
                     </div>
                 ) : (
                     <></>

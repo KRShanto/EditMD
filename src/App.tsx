@@ -15,12 +15,20 @@ FEATUREs to add:
 - Warn the user if they are about to close the app with unsaved changes
 */
 
+/*
+TODOs to do:
+
+- Create a component `TextArea` that will be used for editing the text.
+   It will also have the functionality to undo/redo changes.
+   
+*/
+
 // Type of a file
 export interface MdFile {
     name: string;
     path: string;
     content: string;
-    // isSaved: boolean; // TODO: add this
+    hasUnsavedChanges: boolean;
 }
 
 // Type of the context of the MdFile
@@ -48,6 +56,7 @@ function App() {
             path: "/demo/file.txt",
             content: "It is just for a demo",
             name: "file.txt",
+            hasUnsavedChanges: false,
         },
     ]);
     const [currentFile, setCurrentFile] = useState<string | null>(null);

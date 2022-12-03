@@ -13,6 +13,11 @@ export default function FileHeader() {
                         <div className="header" key={index}>
                             <button
                                 title={file.path}
+                                style={
+                                    file.hasUnsavedChanges
+                                        ? { color: "red" }
+                                        : {}
+                                }
                                 onClick={() => {
                                     currentFile?.setCurrentFile(file.path);
                                 }}

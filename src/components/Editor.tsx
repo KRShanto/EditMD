@@ -28,6 +28,7 @@ export default function Editor() {
                                                 return {
                                                     ...file,
                                                     content: event.target.value,
+                                                    hasUnsavedChanges: true,
                                                 };
                                             } else {
                                                 return file;
