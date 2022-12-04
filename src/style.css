@@ -163,10 +163,15 @@ body {
     padding: 20px;
     font-size: 20px;
     background-color: transparent;
+    overflow: scroll;
 }
 
 .edit-result .result * {
     margin-bottom: 25px;
+}
+
+.edit-result .result pre div code {
+    line-height: 0.01 !important;
 }
 
 .edit-result .result ul,

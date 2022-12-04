@@ -13,6 +13,8 @@ FEATUREs to add:
 - Help menu to show keyboard shortcuts and how to use the markdown editor
 - Save the opened file paths to the filesystem when the app is about to close
 - Warn the user if they are about to close the app with unsaved changes
+- Improve the syntax highlighting feature
+- Highly customizable theme
 */
 
 /*
@@ -22,8 +24,6 @@ TODOs to do:
    It will also have the functionality to undo/redo changes.
    It will show the line numbers
    Tab will indent the text
-
-- Change the default behaviour of the <a> tag in the markdown preview. Because in desktop, it will not open the link in the browser.
    
 */
 

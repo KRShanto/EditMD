@@ -1,6 +1,17 @@
 import { CurrentFilePathContext, FilesContext } from "../App";
 import { useContext } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import typescript from "react-syntax-highlighter/dist/cjs/languages/prism/typescript";
+import bash from "react-syntax-highlighter/dist/cjs/languages/prism/bash";
+import markdown from "react-syntax-highlighter/dist/cjs/languages/prism/markdown";
+import json from "react-syntax-highlighter/dist/cjs/languages/prism/json";
+
+SyntaxHighlighter.registerLanguage("typescript", typescript);
+SyntaxHighlighter.registerLanguage("bash", bash);
+SyntaxHighlighter.registerLanguage("markdown", markdown);
+SyntaxHighlighter.registerLanguage("json", json);
 
 export default function Result() {
     const files = useContext(FilesContext);
@@ -23,6 +34,34 @@ export default function Result() {
                                 a: ({ node, ...props }) => (
                                     <a {...props} target="_blank" />
                                 ),
+                                code: ({
+                                    node,
+                                    inline,
+                                    className,
+                                    children,
+                                    ...props
+                                }) => {
+                                    const match = /language-(\w+)/.exec(
+                                        className || ""
+                                    );
+                                    return !inline && match ? (
+                                        <SyntaxHighlighter
+                                            style={darcula}
+                                            showLineNumbers={true}
+                                            language={match[1]}
+                                            PreTag="div"
+                                            children={String(children).replace(
+                                                /\n$/,
+                                                ""
+                                            )}
+                                            {...props}
+                                        />
+                                    ) : (
+                                        <code className={className} {...props}>
+                                            {children}
+                                        </code>
+                                    );
+                                },
                             }}
                         >
                             {selectedFile.content}
@@ -37,3 +76,16 @@ export default function Result() {
         </>
     );
 }
+
+// interface ComponentProps {
+//     value: string | undefined;
+//     language: string | undefined;
+// }
+
+// function Component({ value, language }: ComponentProps) {
+//     return (
+//         <ReactSyntaxHighlighter language={language} style={docco}>
+//             {value ?? ""}
+//         </ReactSyntaxHighlighter>
+//     );
+// }
