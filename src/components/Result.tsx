@@ -17,7 +17,16 @@ export default function Result() {
                 <div className="header">Preview</div>
                 <div className="result">
                     {selectedFile !== undefined ? (
-                        <ReactMarkdown>{selectedFile.content}</ReactMarkdown>
+                        <ReactMarkdown
+                            components={{
+                                // overwrite with target="_blank"
+                                a: ({ node, ...props }) => (
+                                    <a {...props} target="_blank" />
+                                ),
+                            }}
+                        >
+                            {selectedFile.content}
+                        </ReactMarkdown>
                     ) : (
                         <ReactMarkdown>
                             {"## Select a file to edit"}

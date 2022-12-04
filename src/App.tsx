@@ -58,7 +58,8 @@ function App() {
     const [files, setFiles] = useState<MdFile[]>([
         {
             path: "/demo/file.txt",
-            content: "It is just for a demo",
+            content:
+                "It is just for a demo\nIts an [example](https://example.com)",
             name: "file.txt",
             hasUnsavedChanges: false,
         },
