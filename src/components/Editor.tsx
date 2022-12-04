@@ -56,8 +56,16 @@ export default function Editor() {
                                     event.target as HTMLTextAreaElement;
                                 const lineNumbers =
                                     document.querySelector(".line-numbers");
+                                const result = document.querySelector(
+                                    ".edit-result .result"
+                                );
                                 if (lineNumbers !== null) {
                                     lineNumbers.scrollTop = target.scrollTop;
+
+                                    // scroll the result
+                                    if (result !== null) {
+                                        result.scrollTop = target.scrollTop;
+                                    }
                                 }
                             }}
                         />
