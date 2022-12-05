@@ -51,6 +51,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 16
+    - name: install tsc
+      run: npm i -g tsc
     - name: install Rust stable
       uses: actions-rs/toolchain@v1
       with:
