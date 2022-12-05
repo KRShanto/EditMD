@@ -57,25 +57,25 @@ export const CurrentFilePathContext =
 
 function App() {
     const [files, setFiles] = useState<MdFile[]>([
-        {
-            path: "/demo/file.txt",
-            content:
-                "It is just for a demo\nIts an [example](https://example.com)",
-            name: "file.txt",
-            hasUnsavedChanges: false,
-        },
-        {
-            path: "/demo/file2.txt",
-            content: "It is just for a demo",
-            name: "file2.txt",
-            hasUnsavedChanges: false,
-        },
-        {
-            path: "/demo/file3.txt",
-            content: "It is just for a demo",
-            name: "file3.txt",
-            hasUnsavedChanges: false,
-        },
+        // {
+        //     path: "/demo/file.txt",
+        //     content:
+        //         "It is just for a demo\nIts an [example](https://example.com)",
+        //     name: "file.txt",
+        //     hasUnsavedChanges: false,
+        // },
+        // {
+        //     path: "/demo/file2.txt",
+        //     content: "It is just for a demo",
+        //     name: "file2.txt",
+        //     hasUnsavedChanges: false,
+        // },
+        // {
+        //     path: "/demo/file3.txt",
+        //     content: "It is just for a demo",
+        //     name: "file3.txt",
+        //     hasUnsavedChanges: false,
+        // },
     ]);
     const [currentFile, setCurrentFile] = useState<string | null>(null);
 
