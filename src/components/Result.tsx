@@ -7,11 +7,15 @@ import typescript from "react-syntax-highlighter/dist/cjs/languages/prism/typesc
 import bash from "react-syntax-highlighter/dist/cjs/languages/prism/bash";
 import markdown from "react-syntax-highlighter/dist/cjs/languages/prism/markdown";
 import json from "react-syntax-highlighter/dist/cjs/languages/prism/json";
+import python from "react-syntax-highlighter/dist/cjs/languages/prism/python";
+import rust from "react-syntax-highlighter/dist/cjs/languages/prism/rust";
 
 SyntaxHighlighter.registerLanguage("typescript", typescript);
 SyntaxHighlighter.registerLanguage("bash", bash);
 SyntaxHighlighter.registerLanguage("markdown", markdown);
 SyntaxHighlighter.registerLanguage("json", json);
+SyntaxHighlighter.registerLanguage("python", python);
+SyntaxHighlighter.registerLanguage("rust", rust);
 
 export default function Result() {
     const files = useContext(FilesContext);
@@ -46,10 +50,12 @@ export default function Result() {
                                     );
                                     return !inline && match ? (
                                         <SyntaxHighlighter
+                                            // @ts-ignore
                                             style={darcula}
                                             showLineNumbers={true}
                                             language={match[1]}
                                             PreTag="div"
+                                            className="code-block"
                                             children={String(children).replace(
                                                 /\n$/,
                                                 ""

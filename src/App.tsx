@@ -12,7 +12,6 @@ FEATUREs to add:
 - Rich text editor
 - Help menu to show keyboard shortcuts and how to use the markdown editor
 - Save the opened file paths to the filesystem when the app is about to close
-- Warn the user if they are about to close the app with unsaved changes
 - Improve the syntax highlighting feature
 - Highly customizable theme
 */
@@ -24,6 +23,8 @@ TODOs to do:
    It will also have the functionality to undo/redo changes.
    It will show the line numbers
    Tab will indent the text
+
+- Try to reduce the bundle size. Try to optimize the react-syntax-highlighter and react-markdown packages
    
 */
 
