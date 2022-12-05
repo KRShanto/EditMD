@@ -26,6 +26,7 @@ TODOs to do:
 
 - Try to reduce the bundle size. Try to optimize the react-syntax-highlighter and react-markdown packages
    
+- Fonts fanily
 */
 
 // Type of a file
